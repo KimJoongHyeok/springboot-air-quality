@@ -1,0 +1,7 @@
+server:
+  port: 8080
+  shutdown: graceful
+
+api:
+  busan:
+    base-url: http://apis.data.go.kr/6260000/
