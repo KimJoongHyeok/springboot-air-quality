@@ -1,5 +1,5 @@
 # 전국 대기질 정보 서비스 
-# Springboot - RestAPI 명세서부터 만들어보기 
+# Springboot - RestAPI practice 
 
 ### Request
 
