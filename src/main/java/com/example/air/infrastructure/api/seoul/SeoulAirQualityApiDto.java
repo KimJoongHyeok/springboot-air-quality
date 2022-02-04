@@ -1,6 +1,5 @@
 package com.example.air.infrastructure.api.seoul;
 
-import com.example.air.infrastructure.api.busan.BusanAirQualityApiDto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,7 +15,7 @@ public class SeoulAirQualityApiDto {
     @ToString
     public static class GetAirQualityResponse {
         @JsonProperty("RealtimeCityAir")
-        private SeoulAirQualityApiDto.SeoulResult seoulResult;
+        private SeoulResult seoulResult;
     }
 
     @Getter
@@ -24,14 +23,11 @@ public class SeoulAirQualityApiDto {
     @ToString
     public static class SeoulResult {
 
-        private Integer list_total_count;
+        private int list_total_count;
         @JsonProperty("RESULT")
         private Result result;
         @JsonProperty("row")
-        private List<SeoulAirQualityApiDto.row> row;
-        private Integer START_INDEX;
-        private Integer END_INDEX;
-
+        private List<Row> row;
 
         public boolean isSuccess() {
             if (Objects.equals(result.getCode(), "INFO-000")) {
@@ -54,7 +50,7 @@ public class SeoulAirQualityApiDto {
     @Getter
     @Setter
     @ToString
-    public static class row {
+    public static class Row {
         @JsonProperty("MSRSTE_NM")
         private String district;
         @JsonProperty("MSRDT")

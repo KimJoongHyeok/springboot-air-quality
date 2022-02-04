@@ -1,6 +1,5 @@
 package com.example.air.infrastructure.api.seoul;
 
-import com.example.air.infrastructure.api.busan.BusanAirQualityApiDto;
 import retrofit2.Call;
 import retrofit2.http.GET;
 

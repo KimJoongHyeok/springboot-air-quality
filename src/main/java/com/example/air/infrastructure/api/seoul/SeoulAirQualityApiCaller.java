@@ -41,7 +41,7 @@ public class SeoulAirQualityApiCaller {
                 return response;
             }
 
-            throw new RuntimeException("getAirQuality 응답이 올바르지 않습니다. result=" + response.getSeoulResult().getResult().getMessage());
+            throw new RuntimeException("getAirQuality 응답이 올바르지 않습니다. result=" + response.getSeoulResult().getResult());
 
         } catch (IOException e) {
             log.error(e.getMessage(), e);
