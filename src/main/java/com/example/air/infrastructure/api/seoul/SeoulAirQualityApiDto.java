@@ -15,13 +15,13 @@ public class SeoulAirQualityApiDto {
     @ToString
     public static class GetAirQualityResponse {
         @JsonProperty("RealtimeCityAir")
-        private SeoulResult seoulResult;
+        private Response response;
     }
 
     @Getter
     @Setter
     @ToString
-    public static class SeoulResult {
+    public static class Response {
 
         private int list_total_count;
         @JsonProperty("RESULT")
@@ -51,21 +51,23 @@ public class SeoulAirQualityApiDto {
     @Setter
     @ToString
     public static class Row {
-        @JsonProperty("MSRSTE_NM")
+        @JsonProperty("MSRRNG_NM") //권역명
+        private String area;
+        @JsonProperty("MSRSTE_NM") //측정소명
         private String district;
         @JsonProperty("MSRDT")
         private String measurementTime;
         @JsonProperty("PM25")
-        private int pm25;
+        private Integer pm25;
         @JsonProperty("PM10")
-        private int pm10;
+        private Integer pm10;
         @JsonProperty("O3")
-        private double o3;
+        private Double o3;
         @JsonProperty("NO2")
-        private double no2;
+        private Double no2;
         @JsonProperty("CO")
-        private double co;
+        private Double co;
         @JsonProperty("SO2")
-        private double so2;
+        private Double so2;
     }
 }
