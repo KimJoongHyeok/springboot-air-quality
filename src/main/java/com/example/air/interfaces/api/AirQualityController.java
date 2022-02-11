@@ -1,7 +1,6 @@
 package com.example.air.interfaces.api;
 
 import com.example.air.application.City;
-import com.example.air.infrastructure.api.seoul.SeoulAirQualityApiDto;
 import com.example.air.application.AirQualityService;
 import com.example.air.interfaces.api.dto.AirQualityDto;
 import org.springframework.beans.factory.annotation.Autowired;
