@@ -15,7 +15,7 @@ class BusanAirQualityApiCallerTest {
     @Test
     public void 부산_대기질_조회_API_호출() {
         // when
-        var response = busanAirQualityApiCaller.getAirQuality();
+        var response = busanAirQualityApiCaller.getAirQualityInfo();
 
         // then
         assertNotNull(response);

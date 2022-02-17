@@ -18,7 +18,7 @@ public class SeoulAirQualityApiCallerTest {
         //given
 
         //when
-        var response = seoulAirQualityApiCaller.getAirQuality();
+        var response = seoulAirQualityApiCaller.getAirQualityInfo();
 
         //then
         assertNotNull(response);

@@ -1,6 +1,7 @@
 package com.example.air.infrastructure.api.busan;
 
 import com.example.air.application.City;
+import com.example.air.application.KoreaAirQualityService;
 import com.example.air.application.util.AirQualityGradeUtil;
 import com.example.air.infrastructure.api.seoul.SeoulAirQualityApiDto;
 import com.example.air.interfaces.api.dto.AirQualityDto;
@@ -18,7 +19,7 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @Component
-public class BusanAirQualityApiCaller {
+public class BusanAirQualityApiCaller implements KoreaAirQualityService {
     private final BusanAirQualityApi busanAirQualityApi;
 
     public BusanAirQualityApiCaller(@Value("${api.busan.base-url}") String baseUrl) {
@@ -33,7 +34,13 @@ public class BusanAirQualityApiCaller {
         this.busanAirQualityApi = retrofit.create(BusanAirQualityApi.class);
     }
 
-    public AirQualityDto.GetAirQualityInfo getAirQuality() {
+    @Override
+    public City getCity() {
+        return City.busan;
+    }
+
+    @Override
+    public AirQualityDto.GetAirQualityInfo getAirQualityInfo() {
         try {
             var call = busanAirQualityApi.getAirQuality();
             var response = call.execute().body();
@@ -56,7 +63,7 @@ public class BusanAirQualityApiCaller {
     }
     //JSON으로 받아온 response를 AirQualityDTO에 맞게 변환
 
-    private AirQualityDto.GetAirQualityInfo convert(BusanAirQualityApiDto.GetAirQualityResponse response){
+    private AirQualityDto.GetAirQualityInfo convert(BusanAirQualityApiDto.GetAirQualityResponse response) {
         var items = response.getResult().getItems();
         var cityPm10Avg = averagePm10(items);
         var cityPm10AvgGrade = AirQualityGradeUtil.getPm10Grade(cityPm10Avg);
@@ -92,4 +99,6 @@ public class BusanAirQualityApiCaller {
                 )
                 .collect(Collectors.toList()); //Collectors.toList() : 모든 Stream elements를 List나 Set instance로 변경하는 메서드
     }
+
+
 }

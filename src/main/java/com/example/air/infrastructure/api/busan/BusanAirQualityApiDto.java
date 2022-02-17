@@ -54,18 +54,11 @@ public class BusanAirQualityApiDto {
         private String measurementTime;
         private String repItem;
         private String repVal;
-        private String repCai;
         private Double so2;
-        private String so2Cai;
         private Double no2;
-        private String no2Cai;
         private Double o3;
-        private String o3Cai;
         private Double co;
-        private String coCai;
         private Integer pm25;
-        private String pm25Cai;
         private Integer pm10;
-        private String pm10Cai;
     }
 }

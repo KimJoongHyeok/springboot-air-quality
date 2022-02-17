@@ -1,27 +1,23 @@
 package com.example.air.interfaces.api;
 
-import com.example.air.application.City;
 import com.example.air.application.AirQualityService;
+import com.example.air.application.City;
 import com.example.air.interfaces.api.dto.AirQualityDto;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
-
+@Slf4j
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api/v1/air-quality")
 public class AirQualityController {
-
-    @Autowired
     private final AirQualityService airQualityService;
 
-    public AirQualityController(AirQualityService airQualityService) {
-        this.airQualityService = airQualityService;
-    }
-
     @GetMapping("/{city}")
-    public AirQualityDto.GetAirQualityInfo airQuality(@PathVariable("city") City city,
-                                                      @RequestParam(required = false) String district) {
-        return airQualityService.getAirQuality(city, district);
+    public AirQualityDto.GetAirQualityInfo getAirQualityInfo(@PathVariable("city") City city,
+                                                             @RequestParam(required = false, defaultValue = "all") String district) {
+        log.info(airQualityService.getAirQualityInfo(city, district).toString() + "를 출력");
+        return airQualityService.getAirQualityInfo(city, district);
     }
-
 }

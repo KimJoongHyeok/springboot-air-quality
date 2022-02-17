@@ -1,6 +1,7 @@
 package com.example.air.infrastructure.api.seoul;
 
 import com.example.air.application.City;
+import com.example.air.application.KoreaAirQualityService;
 import com.example.air.application.util.AirQualityGradeUtil;
 import com.example.air.interfaces.api.dto.AirQualityDto;
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -17,7 +18,7 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @Component
-public class SeoulAirQualityApiCaller {
+public class SeoulAirQualityApiCaller implements KoreaAirQualityService {
     private final SeoulAirQualityApi seoulAirQualityApi;
 
     public SeoulAirQualityApiCaller(@Value("${api.seoul.base-url}") String baseUrl) {
@@ -32,7 +33,13 @@ public class SeoulAirQualityApiCaller {
         this.seoulAirQualityApi = retrofit.create(SeoulAirQualityApi.class);
     }
 
-    public AirQualityDto.GetAirQualityInfo getAirQuality() {
+    @Override
+    public City getCity() {
+        return City.seoul;
+    }
+
+    @Override
+    public AirQualityDto.GetAirQualityInfo getAirQualityInfo() {
         try {
             var call = seoulAirQualityApi.getAirQuality();
             var response = call.execute().body(); //실제 실행문
@@ -91,5 +98,7 @@ public class SeoulAirQualityApiCaller {
                 )
                 .collect(Collectors.toList()); //Collectors.toList() : 모든 Stream elements를 List나 Set instance로 변경하는 메서드
     }
+
+
 
 }
